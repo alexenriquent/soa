@@ -1,0 +1,121 @@
+﻿@model BookStoreManagementSystem.Models.S4452232
+
+@{
+    ViewBag.Title = "DeleteBooks";
+}
+
+<h2>Delete Books</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+
+    <div class='row'>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class='col-xs-2'>
+            <div class="form-group">
+                @Html.DropDownList("attribute", new List<SelectListItem> {
+                    new SelectListItem { Text = "Index", Value = "index" },
+                    new SelectListItem { Text = "ID", Value = "id" },
+                    new SelectListItem { Text = "Year", Value = "year" }}, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div id="index" class='col-sm-3'>
+            <div class="form-group">
+                @Html.EditorFor(model => model.Index, new { htmlAttributes = new { @class = "form-control", id = "index-textbox" } })
+                <div id="index-message">@Html.ValidationMessageFor(model => model.Index, "", new { @class = "text-danger" })</div>
+            </div>
+        </div>
+
+        <div hidden id="id" class='col-sm-3'>
+            <div class="form-group">
+                @Html.EditorFor(model => model.ID, new { htmlAttributes = new { @class = "form-control", id = "id-textbox" } })
+                <div id="id-message">@Html.ValidationMessageFor(model => model.ID, "", new { @class = "text-danger" })</div>
+            </div>
+        </div>
+
+        <div hidden id="year" class='col-sm-3'>
+            <div class="form-group">
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", id = "year-textbox" } })
+                <div id="year-message">@Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })</div>
+            </div>
+        </div>
+
+        <div class='col-xs-1'>
+            <div class='form-group'>
+                <input type="submit" value="Delete" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Index)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in ViewBag.books) {
+    <tr>
+        <td>
+            @item.Index
+        </td>
+        <td>
+            @item.ID
+        </td>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Author
+        </td>
+        <td>
+            @item.Year
+        </td>
+        <td>
+            $@item.Price
+        </td>
+        <td>
+            @item.Stock
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("/Scripts/delete-form.js")"></script>
+
+<script>
+        var message = '@(ViewBag.message)';
+        if (message != "") {
+            alert(message);
+        }
+</script>
+}

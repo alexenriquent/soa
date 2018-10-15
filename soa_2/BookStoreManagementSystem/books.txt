@@ -1,0 +1,5 @@
+0412359680,SOA with CRUD I,Thomas Erl,2017,$100.00,5
+0412359687,SOA: Principles Patterns & Constraints for Building Enterprise Solutions with REST,Thomas Erl,2012,$48.25,3
+0470376848,Service Oriented Architecture (SOA) For Dummies,Judith Hurwitz,2009,$25.27,3
+0470476248,Service-Oriented Architecture: Concepts Technology and Design,Thomas Erl,2005,$46.36,2
+0487965321,SOA Made Simple,Lonneke Dikmans,2012,$13.72,2
