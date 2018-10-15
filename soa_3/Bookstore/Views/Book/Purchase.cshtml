@@ -1,0 +1,193 @@
+﻿@model IEnumerable<Bookstore.storage.Book>
+
+@{
+    ViewBag.Title = "Purchase";
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#purchase-form').validate({
+            rules: {
+                budget: {
+                    required: true,
+                    number: true,
+                    min: 0
+                },
+                "key[0]": {
+                    required: true,
+                    digits: true,
+                    range: [1, @Model.Count()],
+                },
+                "value[0]": {
+                    required: true,
+                    digits: true,
+                    min: 0
+                }
+            },
+            messages: {
+                budget: {
+                    required: "The field Budget is required.",
+                    number: "The field Budget must be a positive float.",
+                    min: "The field Budget cannot be negative"
+                },
+                "key[0]": {
+                    required: "The field Book Number is required.",
+                    digits: "The field Book Number must be a positive integer."
+                },
+                "value[0]": {
+                    required: "The field Amount is required.",
+                    digits: "The field Amount must be a positive integer.",
+                    min: "The field Amount cannot be negative"
+                }
+            }
+        })
+    });
+
+        var message = '@(ViewBag.message)';
+        if (message != "") {
+            alert(message);
+        }
+    </script>
+}
+
+<h2>Purchase</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Index
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 1; i <= Model.Count(); i++) {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Year)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Stock)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@using (Html.BeginForm("Purchase", "Book", FormMethod.Post, new { @id = "purchase-form" })) {
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="budget">Budget:</label>
+                <input type="text" class="form-control" name="budget" />
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label for="key">Book Number (Index):</label>
+                <input type="text" class="form-control" id="key0" name="key[0]" />
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="form-inline" for="value">Amount:</label>
+                <input type="text" class="form-control" id="value0" name="value[0]" />
+            </div>
+        </div>
+    </div>
+
+    <div id="fields" class="form-inline"></div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <button type="button" id="add-field-btn" class="btn btn-default">More</button>
+                <input type="submit" value="Purchase" class="btn btn-default" id="submit" /><br/>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="form-group">
+                <input type="text" class="form-control" name="response" value="@ViewBag.response" disabled />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        var $fields = $('#fields');
+        var count = 1;
+        $('#add-field-btn').click(function (e) {
+            e.preventDefault();
+            $('<div class="row"><div class="col-sm-3"><div class="form-group"><label for="key">Book Number (Index):</label><input type="text" class="form-control" id="key' + count + '" name="key[' + count + ']"/></div></div><div class="col-sm-3"><div class="form-group"><label for="value">Amount:</label><input type="text "class="form-control" id="value' + count + '" name="value[' + count + ']"/></div></div></div><br/>').appendTo($fields);
+
+            $('#key' + count).rules("add", {
+                required: true,
+                digits: true,
+                range: [1, @Model.Count()],
+                messages: {
+                    required: "The field Book Number is required.",
+                    digits: "The field Book Number must be a positive integer."
+                }
+            });
+
+            $('#value' + count).rules("add", {
+                required: true,
+                digits: true,
+                min: 0,
+                messages: {
+                    required: "The field Amount is required.",
+                    digits: "The field Amount must be a positive integer.",
+                    min: "The field Amount cannot be negative"
+                }
+            });
+
+            count++;
+        });
+    });
+
+</script>

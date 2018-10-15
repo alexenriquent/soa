@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Bookstore.storage.Book>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Index
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 1; i <= Model.Count(); i++) {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Year)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Stock)
+            </td>
+        </tr>
+    }
+
+</table>
+

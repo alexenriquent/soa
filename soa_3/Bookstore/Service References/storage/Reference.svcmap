@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8295b8d0-2fa9-4fc9-8e3b-e32002f2fd1b" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:57739/BookStorage.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="BookStorage.xsd" MetadataType="Schema" ID="8eb480a8-c33a-407d-8e41-5c6ed980b428" SourceId="1" SourceUrl="http://localhost:57739/BookStorage.svc?xsd=xsd1" />
+    <MetadataFile FileName="BookStorage1.xsd" MetadataType="Schema" ID="9fe21c93-73df-48a2-9d4d-d2a80c8262a6" SourceId="1" SourceUrl="http://localhost:57739/BookStorage.svc?xsd=xsd0" />
+    <MetadataFile FileName="BookStorage.wsdl" MetadataType="Wsdl" ID="2a52cbc3-3641-4a3e-9f65-e123e6f27010" SourceId="1" SourceUrl="http://localhost:57739/BookStorage.svc?wsdl" />
+    <MetadataFile FileName="BookStorage2.xsd" MetadataType="Schema" ID="d6211a50-9a5f-4ba4-bb8c-fa32ca23ccd8" SourceId="1" SourceUrl="http://localhost:57739/BookStorage.svc?xsd=xsd2" />
+    <MetadataFile FileName="BookStorage.disco" MetadataType="Disco" ID="7359911e-c79c-40a8-b4b5-5e2111cc0673" SourceId="1" SourceUrl="http://localhost:57739/BookStorage.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

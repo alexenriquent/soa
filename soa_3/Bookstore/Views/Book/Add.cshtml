@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Bookstore.storage.Book>
+
+@{
+    ViewBag.Title = "Add";
+}
+
+@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript" src="@Url.Content("/Scripts/add-validation.js")"></script>
+        <script>
+        var message = '@(ViewBag.message)';
+        if (message != "") {
+            alert(message);
+        }
+        </script>
+}
+
+<h2>Add</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Index
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Stock)
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 1; i <= Model.Count(); i++) {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Year)
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.ElementAt(i - 1).Stock)
+            </td>
+        </tr>
+    }
+</table>
+
+@using (Html.BeginForm("Add", "Book", FormMethod.Post, new { @id = "add-form" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.Label("ID", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("id", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Name", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("name", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Author", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("author", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.Label("Year", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("year", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Price", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("price", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Stock", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Editor("stock", new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,8 @@
+p1111,Kobe Bryant,Los Angeles Lakers,1978-8-23
+p2222,Tim Duncan,San Antonio Spurs,1976-4-25
+P3333,LeBron  James,Cleveland Cavaliers,1984-12-30
+p4444,Stephen Curry I,Golden State Worriors,1998-4-16
+p5555,Stephen Curry II,Golden State Worriors,1998-4-16
+p6666,Stephen Curry III,Golden State Worriors,1998-4-16
+p7777,Stephen Curry IV,Golden State Worriors,1998-4-16
+p8888,Stephen Curry V,Golden State Worriors,1998-4-16

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="@Url.Content("/Scripts/search-validation.js")"></script>
+}
+
+@using (Html.BeginForm("Search", "Book", FormMethod.Post, new { @id = "search-form" })) {
+    @Html.AntiForgeryToken()
+
+    <div class='row'>
+        <div class='col-xs-2'>
+            <div class="form-group">
+                @Html.DropDownList("attribute", new List<SelectListItem> {
+                    new SelectListItem { Text = "ID", Value = "id" },
+                    new SelectListItem { Text = "Name", Value = "name" },
+                    new SelectListItem { Text = "Author", Value = "author" },
+                    new SelectListItem { Text = "Year", Value = "year" }}, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class='col-sm-3'>
+            <div class="form-group">
+                @Html.Editor("value", new { htmlAttributes = new { @class = "form-control", id = "value" } })
+            </div>
+        </div>
+
+        <div class='col-xs-1'>
+            <div class='form-group'>
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Index
+        </th>
+        <th>
+            ID
+        </th>
+        <th>
+            Name
+        </th>
+        <th>
+            Author
+        </th>
+        <th>
+            Year
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Stock
+        </th>
+        <th></th>
+    </tr>
+
+    @for (int i = 1; i <= ViewBag.books.Count; i++) {
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @ViewBag.books[i - 1].ID
+            </td>
+            <td>
+                @ViewBag.books[i - 1].Name
+            </td>
+            <td>
+                @ViewBag.books[i - 1].Author
+            </td>
+            <td>
+                @ViewBag.books[i - 1].Year
+            </td>
+            <td>
+                $@ViewBag.books[i - 1].Price
+            </td>
+            <td>
+                @ViewBag.books[i - 1].Stock
+            </td>
+        </tr>
+    }
+
+</table>

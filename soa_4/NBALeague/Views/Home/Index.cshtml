@@ -1,0 +1,336 @@
+﻿
+<div class="page-header">
+    <h1>NBA League</h1>
+</div>
+
+<div class="row">
+
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">All Players</h2>
+            </div>
+            <div class="panel-body">
+                <ul class="list-unstyled" id="all-players" />
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Search</h2>
+            </div>
+            <div class="panel-body">
+                <form id="get-form" action="javascript:getPlayers();">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.DropDownList("get-attribute", new List<SelectListItem> {
+                            new SelectListItem { Text = "ID", Value = "id" },
+                            new SelectListItem { Text = "Name", Value = "name" }}, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.Editor("value", new { htmlAttributes = new { @class = "form-control", id = "get-value" } })
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" value="Search" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+                <br/>
+                <ul class="list-unstyled" id="players" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Player Registration</h2>
+            </div>
+            <div class="panel-body">
+                <form id="post-form" action="javascript:addPlayer();">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.Label("ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("id", new { htmlAttributes = new { @class = "form-control", id = "post-id" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Firstname", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("firstname", new { htmlAttributes = new { @class = "form-control", id = "post-firstname" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Lastname", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("lastname", new { htmlAttributes = new { @class = "form-control", id = "post-lastname" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Team", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("team", new { htmlAttributes = new { @class = "form-control", id = "post-team" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("DOB", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("dob", new { htmlAttributes = new { @class = "form-control", id = "post-dob" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Update</h2>
+            </div>
+            <div class="panel-body">
+                <form id="put-form" action="javascript:updatePlayer();">
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            @Html.Label("ID", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("id", new { htmlAttributes = new { @class = "form-control", id = "put-id" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Firstname", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("firstname", new { htmlAttributes = new { @class = "form-control", id = "put-firstname" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Lastname", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("lastname", new { htmlAttributes = new { @class = "form-control", id = "put-lastname" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("Team", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("team", new { htmlAttributes = new { @class = "form-control", id = "put-team" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("DOB", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.Editor("dob", new { htmlAttributes = new { @class = "form-control", id = "put-dob" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Update" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Delete</h2>
+            </div>
+            <div class="panel-body">
+                <form id="delete-form" action="javascript:deletePlayer();">
+                    <div class="row">
+                        <div class="col-md-3">
+                            @Html.DropDownList("delete-attribute", new List<SelectListItem> {
+                            new SelectListItem { Text = "ID", Value = "id" },
+                            new SelectListItem { Text = "Name", Value = "name" }}, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-5">
+                            @Html.Editor("value", new { htmlAttributes = new { @class = "form-control", id = "delete-value" } })
+                        </div>
+                        <div class="col-md-1">
+                            <input type="submit" value="Delete" class="btn btn-default" />
+                        </div>
+                    </div>
+                </form>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/get-validation.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/post-validation.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/put-validation.js")"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/delete-validation.js")"></script>
+
+    <script>
+        $(document).ready(function () {
+            getAllPlayers();
+        });
+
+        function formatItem(player) {
+            return player.Registration_ID + ',' + player.Player_name + ',' + player.Team_name + ','
+                + player.Date_of_birth.substring(0, 10);
+        }
+
+        function getAllPlayers() {
+            $.ajax({
+                type: "GET",
+                url: "api/NBALeague/",
+                contentType: "json",
+                dataType: "json",
+                success: function (data) {
+                    $('#all-players').empty();
+                    $.each(data, function (key, value) {
+                        var jsonData = JSON.stringify(value);
+                        var objData = $.parseJSON(jsonData);
+                        $('<li>', { text: formatItem(objData) }).appendTo($('#all-players'));
+                    });
+                },
+                error: function(xhr, textStatus, err) {
+                    $('#all-players').text('Error: ' + err);
+                }
+            });
+        }
+
+        function getPlayers() {
+            var attribute = $('#get-attribute').val();
+            var value = $('#get-value').val();
+            var address = "";
+            if (attribute == "id") {
+                address = "api/NBALeague/" + value;
+            } else if (attribute == "name") {
+                address = "api/NBALeague?" + "name=" + value;
+            }
+
+            $.ajax({
+                type: "GET",
+                url: address,
+                contentType: "json",
+                dataType: "json",
+                success: function (data) {
+                    $('#players').empty();
+                    $('#get-value').val("");
+                    $.each(data, function (key, value) {
+                        var jsonData = JSON.stringify(value);
+                        var objData = $.parseJSON(jsonData);
+                        $('<li>', { text: formatItem(objData) }).appendTo($('#players'));
+                    });
+                },
+                error: function (xhr, textStatus, err) {
+                    $('#get-value').val("");
+                    $('#players').empty();
+                    $('#players').text('Error: ' + err);
+                }
+            });
+        }
+
+        function addPlayer() {
+            var id = $('#post-id').val();
+            var name = $('#post-firstname').val() + " " + $('#post-lastname').val();
+            var team = $('#post-team').val();
+            var dob = $('#post-dob').val();
+
+            var player = {
+                "Registration_ID": id,
+                "Player_name": name,
+                "Team_name": team,
+                "Date_of_birth": dob
+            };            
+
+            $.ajax({
+                type: "POST",
+                url: "api/NBALeague/",
+                data: JSON.stringify(player),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                processData: true,
+                success: function (data, status, jqXHR) {
+                    alert("Success");
+                    $('#post-form').trigger('reset');
+                    $('#players').empty();
+                    getAllPlayers();
+                },
+                error: function (xhr, textStatus, err) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+
+        function updatePlayer() {
+            var id = $('#put-id').val();
+            var name = $('#put-firstname').val() + " " + $('#put-lastname').val();
+            var team = $('#put-team').val();
+            var dob = $('#put-dob').val();
+
+            var player = {
+                "Registration_ID": id,
+                "Player_name": name,
+                "Team_name": team,
+                "Date_of_birth": dob
+            };
+
+            $.ajax({
+                type: "PUT",
+                url: "api/NBALeague/" + id,
+                data: JSON.stringify(player),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                processData: true,
+                success: function (data, status, jqXHR) {
+                    alert("Success");
+                    $('#put-form').trigger('reset');
+                    $('#players').empty();
+                    getAllPlayers();
+                },
+                error: function (xhr, textStatus, err) {
+                    alert(xhr.responseText);
+                }
+            });
+        }
+
+        function deletePlayer() {
+            var attribute = $('#delete-attribute').val();
+            var value = $('#delete-value').val();
+            var address = "";
+            if (attribute == "id") {
+                address = "api/NBALeague/" + value;
+            } else if (attribute == "name") {
+                address = "api/NBALeague?" + "name=" + value;
+            }
+
+            $.ajax({
+                type: "DELETE",
+                url: address,
+                contentType: "json",
+                dataType: "json",
+                success: function (data) {
+                    alert("Success");
+                    $('#delete-value').val("");
+                    $('#players').empty();
+                    getAllPlayers();
+                },
+                error: function (xhr, textStatus, err) {
+                    $('#delete-value').val("");
+                    alert(err);
+                }
+            });
+        }
+    </script>
+}
